@@ -1,0 +1,5 @@
+{
+  "extends": "@kubosho/configs/markdownlint",
+  "no-inline-html": false,
+  "code-block-style": false
+}

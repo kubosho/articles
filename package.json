@@ -1,0 +1,34 @@
+{
+  "name": "@kubosho/articles",
+  "version": "1.0.0",
+  "description": "The contents of blog.kubosho.com",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "npm run lint:markdown & npm run lint:text",
+    "lint:markdown": "markdownlint-cli2 **/*.md",
+    "lint:text": "textlint **/*.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kubosho/articles.git"
+  },
+  "author": "KUBOTA Shota <ta2@o2p.jp>",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "bugs": {
+    "url": "https://github.com/kubosho/articles/issues"
+  },
+  "homepage": "https://github.com/kubosho/articles#readme",
+  "devDependencies": {
+    "@kubosho/configs": "6.5.2",
+    "markdownlint-cli2": "0.18.1",
+    "prettier": "3.6.2",
+    "textlint": "15.2.2",
+    "textlint-filter-rule-comments": "1.2.2",
+    "textlint-rule-ja-no-weak-phrase": "2.0.0",
+    "textlint-rule-no-dead-link": "6.0.1",
+    "textlint-rule-no-doubled-joshi": "5.1.1",
+    "textlint-rule-preset-ai-writing": "1.1.0",
+    "textlint-rule-preset-jtf-style": "3.0.2"
+  }
+}
