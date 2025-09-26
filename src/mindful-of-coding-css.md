@@ -70,5 +70,7 @@ CSSを書いていく上で、どうしても `!important` を使いたくなる
 ここまで、CSSを書く際に心がけている事を書いてきましたが、こういう心がけは下記の思いがあるためです。
 
 <!-- textlint-disable ja-no-weak-phrase, no-doubled-joshi -->
+
 [ドキュメント残しておかないと、身軽になれないし、あとは気をつけていても病気とか事故にあって長期離脱という可能性は 0 ではないので、そうなった時に引き継いだ人が積むし、自分への恨みが起こると思うので、ドキュメントは出来るだけ残しておきたいと自分は考えている。](https://twitter.com/kubosho_/status/569730148536164352)
+
 <!-- textlint-enable ja-no-weak-phrase, no-doubled-joshi -->
