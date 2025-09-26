@@ -8,5 +8,5 @@ Use [kubosho/blog.kubosho.com](https://github.com/kubosho/blog.kubosho.com) as l
 
 ```shell
 cd /path/to/blog.kubosho.com
-ARTICLES_DIRECTORY_PATH=/path/to/articles/src npm run dev
+npm run dev
 ```
