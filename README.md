@@ -11,6 +11,6 @@ cd /path/to/blog.kubosho.com
 npm run dev
 ```
 
-## LICENSE
+## License
 
 © 2014 by KUBOTA Shota is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
