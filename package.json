@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "npm run lint:markdown & npm run lint:text",
     "lint:markdown": "markdownlint-cli2 **/*.md",
     "lint:text": "textlint **/*.md"
