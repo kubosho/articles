@@ -5,10 +5,14 @@ on:
     branches:
       - main
     paths:
-      - "src/**"
-      - ".github/workflows/sync_articles.yaml"
+      - 'src/**'
+      - '.github/workflows/sync_articles.yaml'
 
-  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - 'CI'
+    types:
+      - completed
 
 permissions:
   contents: read
