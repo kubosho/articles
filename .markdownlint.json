@@ -1,5 +1,6 @@
 {
   "extends": "@kubosho/configs/markdownlint",
+  "no-duplicate-heading": true,
   "no-inline-html": false,
   "code-block-style": false
 }
