@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/kubosho/articles#readme",
   "devDependencies": {
-    "@kubosho/configs": "6.5.2",
+    "@kubosho/configs": "6.5.15",
     "markdownlint-cli2": "0.18.1",
     "prettier": "3.6.2",
     "textlint": "15.2.2",
