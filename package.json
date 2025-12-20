@@ -24,7 +24,7 @@
     "@kubosho/configs": "6.5.15",
     "markdownlint-cli2": "0.18.1",
     "prettier": "3.6.2",
-    "textlint": "15.2.2",
+    "textlint": "15.2.3",
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-rule-ja-no-weak-phrase": "2.0.0",
     "textlint-rule-no-dead-link": "6.0.1",
