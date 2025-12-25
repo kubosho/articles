@@ -34,7 +34,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-simple-import-sort": "12.1.1",
     "front-matter": "4.0.2",
-    "markdownlint-cli2": "0.18.1",
+    "markdownlint-cli2": "0.20.0",
     "npm-run-all2": "8.0.4",
     "playwright": "1.57.0",
     "prettier": "3.6.2",
