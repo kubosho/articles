@@ -6,11 +6,11 @@ on:
       - main
     paths:
       - 'src/**'
-      - '.github/workflows/sync_articles.yaml'
+      - '.github/workflows/sync-articles.yaml'
 
   workflow_run:
     workflows:
-      - 'CI'
+      - 'Upload og:image'
     types:
       - completed
 

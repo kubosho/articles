@@ -1,0 +1,8 @@
+{
+  "extends": ["@kubosho/configs/typescript/tsconfig.json"],
+  "compilerOptions": {
+    "lib": ["ESNext"]
+  },
+  "include": ["tools/**/*"],
+  "exclude": ["**/node_modules"]
+}
