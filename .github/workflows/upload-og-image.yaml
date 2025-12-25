@@ -1,0 +1,51 @@
+name: Upload og:image
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+
+  workflow_run:
+    workflows:
+      - 'CI'
+    types:
+      - completed
+
+env:
+  AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+
+      - name: Set up AWS Credentials
+        uses: aws-actions/configure-aws-credentials@61815dcd50bd041e203e49132bacad1fd04d2708 # v5.1.1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          cache: 'npm'
+          node-version: 24
+
+      - name: Install modules
+        run: npm ci
+
+      - name: Generate og:image files
+        run: npm run gen:ogimage
+
+      - name: Sync og:image folder to S3
+        run: |
+          aws s3 sync dist/og_images s3://${{ env.AWS_BUCKET_NAME }}/images/og --delete --exact-timestamps
