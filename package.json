@@ -7,8 +7,9 @@
     "gen:ogimage": "tsx ./tools/og_image/generate-og-image.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lint": "npm run lint:markdown & npm run lint:text",
+    "lint": "run-p lint:*",
     "lint:markdown": "markdownlint-cli2 **/*.md",
+    "lint:scripts": "eslint '**/*.{ts,tsx}'",
     "lint:text": "textlint **/*.md"
   },
   "repository": {
@@ -22,10 +23,19 @@
   },
   "homepage": "https://github.com/kubosho/articles#readme",
   "devDependencies": {
+    "@eslint/js": "9.39.2",
     "@kubosho/configs": "6.5.15",
     "@types/node": "25.0.3",
+    "eslint": "9.39.2",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-import-resolver-typescript": "4.4.4",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-simple-import-sort": "12.1.1",
     "front-matter": "4.0.2",
     "markdownlint-cli2": "0.18.1",
+    "npm-run-all2": "8.0.4",
     "playwright": "1.57.0",
     "prettier": "3.6.2",
     "sharp": "0.34.5",
@@ -36,6 +46,7 @@
     "textlint-rule-no-doubled-joshi": "5.1.1",
     "textlint-rule-preset-ai-writing": "1.1.0",
     "textlint-rule-preset-jtf-style": "3.0.3",
-    "tsx": "4.21.0"
+    "tsx": "4.21.0",
+    "typescript-eslint": "8.50.1"
   }
 }
