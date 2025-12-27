@@ -39,7 +39,7 @@
     "playwright": "1.57.0",
     "prettier": "3.6.2",
     "sharp": "0.34.5",
-    "textlint": "15.2.3",
+    "textlint": "15.5.0",
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-rule-ja-no-weak-phrase": "2.0.0",
     "textlint-rule-no-dead-link": "6.1.0",
