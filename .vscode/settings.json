@@ -1,10 +1,10 @@
 {
-    "workbench.colorTheme": "Lapis Peridot Light",
-    "zenMode.centerLayout": true,
-    "zenMode.fullScreen": false,
-    "zenMode.hideActivityBar": false,
-    "zenMode.hideLineNumbers": true,
-    "zenMode.hideStatusBar": false,
-    "zenMode.restore": true,
-    "zenMode.silentNotifications": false,
+  "workbench.colorTheme": "Lapis Peridot Light",
+  "zenMode.centerLayout": true,
+  "zenMode.fullScreen": false,
+  "zenMode.hideActivityBar": false,
+  "zenMode.hideLineNumbers": true,
+  "zenMode.hideStatusBar": false,
+  "zenMode.restore": true,
+  "zenMode.silentNotifications": false,
 }
