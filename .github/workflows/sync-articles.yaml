@@ -1,13 +1,6 @@
 name: Sync Articles
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'src/**'
-      - '.github/workflows/sync-articles.yaml'
-
   workflow_run:
     workflows:
       - 'Upload og:image'
