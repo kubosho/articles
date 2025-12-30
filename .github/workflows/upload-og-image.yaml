@@ -37,9 +37,6 @@ jobs:
       - name: Install modules
         run: npm ci
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
-
       - name: Generate og:image files
         run: npm run gen:ogimage
 
