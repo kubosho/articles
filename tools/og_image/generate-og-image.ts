@@ -2,46 +2,66 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import fm from 'front-matter';
-import { chromium } from 'playwright';
+import satori from 'satori';
 import sharp from 'sharp';
 
 type Params = {
-  pageTitle: string;
-  siteTitle: string;
+  title: string;
 };
 
-const BLOG_TITLE = '学ぶ、考える、書き出す。';
-
-function addBr(text: string): string {
-  const t = text;
-  return t.replace(/、/g, '$&<br />');
-}
-
-export async function generateOgImage({ pageTitle, siteTitle }: Params): Promise<Buffer> {
-  const browser = await chromium.launch();
-  const context = await browser.newContext();
-
-  const page = await context.newPage();
-  await page.setViewportSize({
-    width: 1200,
-    height: 630,
-  });
-
-  const [baseHtml, baseImage] = await Promise.all([
-    fs.readFile(path.resolve(__dirname, './templates/og-image.html'), 'utf-8'),
+export async function generateOgImage({ title }: Params): Promise<string> {
+  const [backgroundImage, font] = await Promise.all([
     fs.readFile(path.resolve(__dirname, './templates/og-image.png'), 'base64'),
+    fs.readFile(path.resolve(__dirname, './fonts/NotoSansJP-Bold.ttf')),
   ]);
 
-  const html = baseHtml
-    .replace('{{pageTitle}}', pageTitle)
-    .replace('{{siteTitle}}', siteTitle)
-    .replace('{{image}}', `data:image/png;base64,${baseImage}`);
+  const svg = await satori(
+    {
+      type: 'div',
+      props: {
+        style: {
+          boxSizing: 'border-box',
+          display: 'flex',
+          width: 1200,
+          height: 630,
+          padding: '24px 48px 24px',
+          backgroundImage: `url(data:image/png;base64,${backgroundImage})`,
+          backgroundSize: '1200px 630px',
+        },
+        children: {
+          type: 'h1',
+          props: {
+            style: {
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              width: '100%',
+              height: '100%',
+              margin: 0,
+              fontSize: '64px',
+              fontWeight: 'bold',
+              color: '#1b1b1b',
+            },
+            children: title,
+          },
+        },
+      },
+    },
+    {
+      width: 1200,
+      height: 630,
+      fonts: [
+        {
+          name: 'NotoSansJP',
+          data: font,
+          weight: 900,
+          style: 'normal',
+        },
+      ],
+    },
+  );
 
-  await page.setContent(html, { waitUntil: 'load' });
-
-  const screenshot = await page.screenshot();
-  await browser.close();
-  return screenshot;
+  return svg;
 }
 
 async function main(): Promise<void> {
@@ -61,9 +81,12 @@ async function main(): Promise<void> {
       const contents = await fs.readFile(filepath, 'utf-8');
       const { attributes } = fm<{ title: string }>(contents);
 
-      const buffer = await generateOgImage({ pageTitle: attributes.title, siteTitle: addBr(BLOG_TITLE) });
-      await sharp(buffer)
-        .webp({ quality: 80 })
+      const image = await generateOgImage({
+        title: attributes.title,
+      });
+
+      await sharp(Buffer.from(image, 'utf-8'))
+        .webp({ quality: 100 })
         .toFile(path.resolve(ogImagesPath, `${slug}.webp`));
     }),
   );
