@@ -65,7 +65,7 @@ export async function generateOgImage({ title }: Params): Promise<string> {
 }
 
 async function main(): Promise<void> {
-  const entriesPath = path.resolve(__dirname, '../../', 'src');
+  const entriesPath = path.resolve(__dirname, '../../', 'articles');
   const entriesDirents = await fs.readdir(entriesPath, { withFileTypes: true });
 
   const ogImagesPath = path.resolve(__dirname, '../../', 'dist/og_images');

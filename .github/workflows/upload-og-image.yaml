@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'src/**'
+      - 'articles/**'
 
 env:
   AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}

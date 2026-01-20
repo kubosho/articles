@@ -41,7 +41,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p blog/articles
-          rsync -av --delete src/ blog/articles/
+          rsync -av --delete articles/ blog/articles/
 
       - name: Commit updates in blog repository
         id: commit
