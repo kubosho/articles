@@ -17,7 +17,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout articles repository
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Generate GitHub App token
         id: app-token
@@ -29,7 +29,7 @@ jobs:
           repositories: blog.kubosho.com
 
       - name: Checkout blog repository
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: kubosho/blog.kubosho.com
           path: blog
