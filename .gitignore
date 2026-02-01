@@ -3,6 +3,7 @@
 # --------------------
 
 **/.obsidian/
+**/dist/
 **/node_modules/
 
 
