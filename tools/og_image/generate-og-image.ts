@@ -74,21 +74,23 @@ async function main(): Promise<void> {
   await fs.readdir(ogImagesPath, { withFileTypes: true }).catch(() => {});
 
   await Promise.all(
-    entriesDirents.map(async ({ name: fileName }) => {
-      const filepath = path.join(entriesPath, fileName);
-      const slug = path.parse(fileName).name;
+    entriesDirents
+      .filter((dirent) => dirent.isFile())
+      .map(async ({ name: fileName }) => {
+        const filepath = path.join(entriesPath, fileName);
+        const slug = path.parse(fileName).name;
 
-      const contents = await fs.readFile(filepath, 'utf-8');
-      const { attributes } = fm<{ title: string }>(contents);
+        const contents = await fs.readFile(filepath, 'utf-8');
+        const { attributes } = fm<{ title: string }>(contents);
 
-      const image = await generateOgImage({
-        title: attributes.title,
-      });
+        const image = await generateOgImage({
+          title: attributes.title,
+        });
 
-      await sharp(Buffer.from(image, 'utf-8'))
-        .webp({ quality: 100 })
-        .toFile(path.resolve(ogImagesPath, `${slug}.webp`));
-    }),
+        await sharp(Buffer.from(image, 'utf-8'))
+          .webp({ quality: 100 })
+          .toFile(path.resolve(ogImagesPath, `${slug}.webp`));
+      }),
   );
 }
 
