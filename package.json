@@ -34,7 +34,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-simple-import-sort": "12.1.1",
     "front-matter": "4.0.2",
-    "markdownlint-cli2": "0.20.0",
+    "markdownlint-cli2": "0.21.0",
     "npm-run-all2": "8.0.4",
     "prettier": "3.8.1",
     "satori": "0.19.2",
