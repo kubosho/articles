@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/lint-article.sh",
+            "timeout": 60,
+            "statusMessage": "Linting article..."
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:blog.kubosho.com)",
+      "WebFetch(domain:note.com)",
+      "Bash(gh pr view:*)",
+      "Bash(jj:*)",
+      "Bash(jq:*)",
+      "Bash(npm run format:*)",
+      "Bash(npm run lint:*)",
+    ],
+    "deny": [
+      "Bash(git:*)",
+      "Bash(npm install:*)",
+      "Bash(npx:*)",
+    ]
+  }
+}
