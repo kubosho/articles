@@ -20,7 +20,6 @@
       "WebFetch(domain:blog.kubosho.com)",
       "WebFetch(domain:note.com)",
       "Bash(gh pr view:*)",
-      "Bash(jj:*)",
       "Bash(jq:*)",
       "Bash(npm run format:*)",
       "Bash(npm run lint:*)"
