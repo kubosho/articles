@@ -23,12 +23,8 @@
       "Bash(jj:*)",
       "Bash(jq:*)",
       "Bash(npm run format:*)",
-      "Bash(npm run lint:*)",
+      "Bash(npm run lint:*)"
     ],
-    "deny": [
-      "Bash(git:*)",
-      "Bash(npm install:*)",
-      "Bash(npx:*)",
-    ]
+    "deny": ["Bash(git:*)", "Bash(npm install:*)", "Bash(npx:*)"]
   }
 }
