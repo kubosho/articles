@@ -22,7 +22,11 @@
       "Bash(gh pr view:*)",
       "Bash(jq:*)",
       "Bash(npm run format:*)",
-      "Bash(npm run lint:*)"
+      "Bash(npm run lint:*)",
+      "Bash(pnpm format:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm markdownlint-cli2:*)",
+      "Bash(pnpm textlint:*)"
     ],
     "deny": ["Bash(git:*)", "Bash(npm install:*)", "Bash(npx:*)"]
   }
