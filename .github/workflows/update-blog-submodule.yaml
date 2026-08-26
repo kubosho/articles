@@ -1,24 +1,23 @@
-name: Sync Articles
+name: Update Blog Submodule
 
 on:
-  workflow_run:
-    workflows:
-      - 'Upload og:image'
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
 
 jobs:
-  sync:
+  update-submodule:
     runs-on: ubuntu-24.04
     permissions:
       contents: read
     steps:
-      - name: Checkout articles repository
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
-
+      # The default GITHUB_TOKEN cannot push to another repository, so use
+      # a GitHub App token scoped to kubosho/blog.kubosho.com.
+      # APP_ID / APP_PRIVATE_KEY must belong to a GitHub App with
+      # Contents: Read and write permission on kubosho/blog.kubosho.com.
       - name: Generate GitHub App token
         id: app-token
         uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
@@ -32,26 +31,22 @@ jobs:
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           repository: kubosho/blog.kubosho.com
-          path: blog
           ref: main
+          submodules: true
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
 
-      - name: Sync articles directory
-        run: |
-          set -euo pipefail
-          mkdir -p blog/articles
-          rsync -av --delete articles/ blog/articles/
-
-      - name: Commit updates in blog repository
-        id: commit
-        working-directory: blog
+      - name: Update articles submodule reference
+        id: update
         env:
-          SOURCE_SHA: ${{ github.sha }}
+          ARTICLES_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
 
-          if [[ -z "$(git status --porcelain)" ]]; then
+          git -C articles fetch origin "${ARTICLES_SHA}"
+          git -C articles checkout "${ARTICLES_SHA}"
+
+          if git diff --quiet -- articles; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -59,10 +54,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add articles
-          git commit -m "docs: sync articles from kubosho/articles@${SOURCE_SHA::7}"
+          git commit -m "chore: update articles submodule to kubosho/articles@${ARTICLES_SHA::7}"
           echo "has_changes=true" >> "$GITHUB_OUTPUT"
 
       - name: Push updates to blog repository
-        if: steps.commit.outputs.has_changes == 'true'
-        working-directory: blog
+        if: steps.update.outputs.has_changes == 'true'
         run: git push origin HEAD:main
