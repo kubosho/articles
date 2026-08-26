@@ -36,27 +36,42 @@ jobs:
           fetch-depth: 0
           token: ${{ steps.app-token.outputs.token }}
 
-      - name: Update articles submodule reference
-        id: update
+      # Another push to articles/main (or a concurrent run of this workflow)
+      # can advance blog.kubosho.com's main between the checkout above and
+      # the push below, which rejects the push as non-fast-forward. Refetch
+      # main right before each push attempt and retry to close that race.
+      - name: Update articles submodule reference and push
         env:
           ARTICLES_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
 
-          git -C articles fetch origin "${ARTICLES_SHA}"
-          git -C articles checkout "${ARTICLES_SHA}"
-
-          if git diff --quiet -- articles; then
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add articles
-          git commit -m "chore: update articles submodule to kubosho/articles@${ARTICLES_SHA::7}"
-          echo "has_changes=true" >> "$GITHUB_OUTPUT"
 
-      - name: Push updates to blog repository
-        if: steps.update.outputs.has_changes == 'true'
-        run: git push origin HEAD:main
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -B main origin/main
+            git submodule update --init articles
+
+            git -C articles fetch origin "${ARTICLES_SHA}"
+            git -C articles checkout "${ARTICLES_SHA}"
+
+            if git diff --quiet -- articles; then
+              echo "No submodule changes to push"
+              exit 0
+            fi
+
+            git add articles
+            git commit -m "chore: update articles submodule to kubosho/articles@${ARTICLES_SHA::7}"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Push rejected on attempt ${attempt}, retrying after refetching main"
+            sleep $((attempt * 3))
+          done
+
+          echo "Failed to push after retries" >&2
+          exit 1
