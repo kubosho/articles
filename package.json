@@ -9,7 +9,7 @@
     "format:check": "prettier --check .",
     "lint": "run-p lint:*",
     "lint:markdown": "markdownlint-cli2 **/*.md",
-    "lint:scripts": "eslint '**/*.{ts,tsx}'",
+    "lint:scripts": "oxlint",
     "lint:text": "textlint **/*.md"
   },
   "repository": {
@@ -23,19 +23,12 @@
   },
   "homepage": "https://github.com/kubosho/articles#readme",
   "devDependencies": {
-    "@eslint/js": "9.39.5",
     "@kubosho/configs": "6.5.36",
     "@types/node": "25.9.5",
-    "eslint": "9.39.5",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-import-resolver-typescript": "4.4.5",
-    "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-simple-import-sort": "14.0.0",
     "front-matter": "4.0.2",
     "markdownlint-cli2": "0.23.2",
     "npm-run-all2": "9.0.3",
+    "oxlint": "1.80.0",
     "prettier": "3.9.6",
     "satori": "0.33.3",
     "sharp": "0.35.3",
@@ -46,7 +39,6 @@
     "textlint-rule-no-doubled-joshi": "5.1.1",
     "textlint-rule-preset-ai-writing": "1.1.0",
     "textlint-rule-preset-jtf-style": "3.0.3",
-    "tsx": "4.23.12",
-    "typescript-eslint": "8.67.0"
+    "tsx": "4.23.12"
   }
 }
