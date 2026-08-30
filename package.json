@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/kubosho/articles#readme",
   "devDependencies": {
-    "@kubosho/configs": "6.5.37",
+    "@kubosho/configs": "6.5.38",
     "@types/node": "25.9.5",
     "front-matter": "4.0.2",
     "markdownlint-cli2": "0.23.2",
