@@ -39,6 +39,6 @@
     "textlint-rule-no-doubled-joshi": "5.1.1",
     "textlint-rule-preset-ai-writing": "1.1.0",
     "textlint-rule-preset-jtf-style": "3.0.3",
-    "tsx": "4.23.12"
+    "tsx": "4.23.13"
   }
 }
