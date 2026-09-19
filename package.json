@@ -24,7 +24,7 @@
   "homepage": "https://github.com/kubosho/articles#readme",
   "devDependencies": {
     "@kubosho/configs": "6.5.39",
-    "@types/node": "25.9.6",
+    "@types/node": "25.9.7",
     "front-matter": "4.0.2",
     "markdownlint-cli2": "0.23.2",
     "npm-run-all2": "9.0.3",
