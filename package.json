@@ -26,7 +26,7 @@
     "@kubosho/configs": "6.5.39",
     "@types/node": "25.9.8",
     "front-matter": "4.0.2",
-    "markdownlint-cli2": "0.23.2",
+    "markdownlint-cli2": "0.23.3",
     "npm-run-all2": "9.0.3",
     "oxlint": "1.83.0",
     "prettier": "3.9.8",
