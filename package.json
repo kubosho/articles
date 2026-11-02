@@ -28,7 +28,7 @@
     "front-matter": "4.0.2",
     "markdownlint-cli2": "0.23.3",
     "npm-run-all2": "9.0.4",
-    "oxlint": "1.89.0",
+    "oxlint": "1.90.0",
     "prettier": "3.9.10",
     "satori": "0.63.2",
     "sharp": "0.35.5",
